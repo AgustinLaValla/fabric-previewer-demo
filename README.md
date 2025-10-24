@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FabricJS Previewer (Next.js Demo)
+
+A minimal **previewer for FabricJS-based designs** built with **Next.js (App Router)**.  
+It lets you **import a JSON template**, **preview each page**, and **update text content** on the fly — replicating how a production editor would render and tweak templates, without exposing the full editor UI.
+
+![Preview screenshot](./screenshot.png)
+
+## Features
+
+- 📄 **Import Fabric JSON templates** (multi-page supported)
+- 👀 **Live preview** of each page
+- ✏️ **Inline text editing** (update text fields and see changes immediately)
+- ⚛️ **Client‑only canvas** with safe dynamic imports for FabricJS & browser‑only libs
+- 🧱 **Next.js** app structure for easy integration and deployment
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- pnpm / yarn / npm
+
+### Install & Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# install deps
+pnpm install
+
+# start dev server
 pnpm dev
-# or
-bun dev
+
+# open in browser
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Import Design**: Load a Fabric JSON template.
+2. **Navigate Pages**: Use page buttons to switch between template pages.
+3. **Edit Text**: Change text inputs; the preview updates in real time.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Notes
 
-## Learn More
+- The canvas component is **client‑only** to avoid SSR issues (`dynamic(..., { ssr: false })` and `'use client'`).
+- Browser‑only dependencies (like `fabric` and `paper`) are **dynamically imported inside effects**.
+- No server state is required; all rendering happens on the client.
 
-To learn more about Next.js, take a look at the following resources:
+## Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js** (App Router)
+- **React 18**
+- **FabricJS** (v6 beta)
+- Optional: **Paper.js**/**opentype.js** for vector/text helpers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Folder Hints (example)
 
-## Deploy on Vercel
+```
+app/
+  page.tsx           # Demo UI (left controls, right preview)
+  layout.tsx         # Root layout
+components/
+  Canvas.tsx         # Client-only Fabric canvas previewer
+public/
+  # static assets here
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
