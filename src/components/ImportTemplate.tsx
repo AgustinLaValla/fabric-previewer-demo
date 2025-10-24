@@ -14,7 +14,7 @@ export const ImportTemplate = () => {
     const files = ev.target.files;
     if (!files || !files.length) return;
 
-    const [file] = ev.target.files as FileList;
+    const file = (ev.target.files as FileList)[0];
 
     if (!file.name.endsWith('.json')) {
       console.error('Only JSON files are allowed')

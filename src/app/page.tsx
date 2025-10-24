@@ -9,7 +9,7 @@ const Canvas = dynamic(() =>
   { ssr: false }
 );
 
-export default function Page() {
+export default function Home() {
   return (
     <div className="w-screen h-screen flex flex-col">
       <header className="bg-background shadow py-5 px-20 sticky top-0 left-0">
