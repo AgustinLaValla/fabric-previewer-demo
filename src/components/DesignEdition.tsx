@@ -1,9 +1,9 @@
 'use client'
-
 import { useEffect, useState } from "react";
-import { Scene, useActiveScene, useSnapMotion, snapMotionActions } from "fabric-previewer";
+import { Scene, useActiveScene, useSnapMotion, snapMotionActions, IDesign } from "fabric-previewer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { SmartTextEdition } from "./SmartTextEdition";
 
 interface TextElement {
   id: string;
@@ -105,7 +105,6 @@ export const DesignEdition = () => {
         )
       }
 
-
       {
         textElements.map(t => (
           <div key={`text-input-field-${t.id}`}>
@@ -121,12 +120,23 @@ export const DesignEdition = () => {
         ))
       }
 
+      <SmartTextEdition />
+
       {
         isThereLogo && (
           <Button onClick={replaceLogo}>Replace logo</Button>
         )
       }
 
+
+      <Button
+        onClick={() => {
+          const designJSON = snapMotion.DESIGN_TO_JSON()
+          console.log({ designJSON })
+        }}
+      >
+        Export JSON
+      </Button>
 
     </div>
   )
