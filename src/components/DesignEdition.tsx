@@ -4,6 +4,8 @@ import { Scene, useActiveScene, useSnapMotion, snapMotionActions, IDesign } from
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SmartTextEdition } from "./SmartTextEdition";
+import { MaskImageEdition } from "./MaskImageEdition";
+import { MaskedImagesReplaceEdition } from "./MaskedImagesReplaceEdition";
 
 interface TextElement {
   id: string;
@@ -121,6 +123,13 @@ export const DesignEdition = () => {
       }
 
       <SmartTextEdition />
+
+
+      {/* Component for empty masking image editing */}
+      <MaskImageEdition />
+
+      {/* Component for replacing masked images */}
+      <MaskedImagesReplaceEdition />
 
       {
         isThereLogo && (
